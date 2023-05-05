@@ -1,0 +1,64 @@
+<!--
+  ~ Copyright 2019-2020 qwop
+  ~
+  ~ This file is part of Jutils.
+  -->
+<idea-plugin>
+  <id>com.tan.jutils.plugin.id</id>
+  <name>Jutils</name>
+  <version>1.0.3</version>
+  <vendor email="qwop@live.cn" url="http://qwop.github.io">qwop</vendor>
+
+  <description><![CDATA[
+      <h1>Jutils工具</h1>
+      <ol>
+        <li>生成无参构造方法</li>
+        <li>主要包含批量生成代码，生成模板代码，打开指定文件</li>
+        <li>外部编辑打开功能</li>
+        <li>生成Mysql字段注释脚本</li>
+      </ol>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      <ol>
+        <li>1.0.3 生成Mysql字段注释脚本,添加java文件注释</li>
+        <li>1.0.2 添加编辑打开功能（支持editplus).</li>
+        <li>1.0.1 修改插件名称,支持批量生成无参的构造方法.</li>
+        <li>1.0   初始化jutils插件.</li>
+      </ol>
+      <em>初始化插件，添加功能批量生成代码；模板代码；打开指定文件</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  -->
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.java</depends>
+  <depends>com.intellij.java</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <group id="com.tan.jutils.group" text="jutils" description="jutils工具">
+      <separator/>
+      <group id="com.tan.jutils.subgroup" />
+      <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="GenerateJavadoc"/>
+      <action id="BatchGenNoArgConstructorAction" class="com.tan.gen.action.BatchGenNoArgConstructorAction" text="生成无参构造方法" icon="AllIcons.Actions.Edit" description="批量生成无参构造方法">
+      </action>
+      <action id="GenMysqlComment4Entity" class="com.tan.gen.action.HibernateEntity2MySqlComment" text="生成Mysql字段注释脚本" icon="AllIcons.Actions.Search" description="生成Mysql字段注释脚本">
+      </action>
+      <action id="com.tan.EditorAction" class="com.tan.gen.action.EditorAction" text="Editplus编辑器打开" description="外部编辑器打开" icon="JutilsIcons.EDITOR_OPEN">
+        <add-to-group group-id="MainToolBar" anchor="last" />
+      </action>
+    </group>
+  </actions>
+
+</idea-plugin>
